@@ -28,16 +28,17 @@ namespace Lexical {
         _MutableToken(TokenType);
         _MutableToken(std::string&, TokenType);
 
-        std::string&  str;
+        std::string   str;
         TokenType     type;
     };
 
     struct Token {
         Token(TokenType);
         Token(const std::string&, TokenType);
-        Token(const _MutableToken&);
+        Token(const _MutableToken&) noexcept;
+        Token(_MutableToken&&) noexcept;
 
-        const std::string&  str;
+        const std::string   str;
         const TokenType     type;
 
         void ensure(TokenType) const throw (Parsical::ParserException);

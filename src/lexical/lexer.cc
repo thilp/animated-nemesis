@@ -8,7 +8,7 @@ namespace Lexical {
     Lexer::Lexer(std::istream& is)
         : input_stream_(is)
           , next_token_(_IGNORABLE)
-          , buff_(*(new std::string))
+          , buff_()
           , buff_offset_(-1)
     {
         getNextToken();
@@ -51,7 +51,7 @@ namespace Lexical {
             do {
                 ttype = charToTokenType(buff_[buff_offset_]);
             } while (   ttype == _IGNORABLE
-                        && static_cast<size_t>(++buff_offset_) <= last_offset);
+                     && static_cast<size_t>(++buff_offset_) <= last_offset);
             if (ttype == _IGNORABLE && !fillBuffer()) {
                 next_token_.type = END_OF_FILE;
                 return;
@@ -60,28 +60,29 @@ namespace Lexical {
         next_token_.type = ttype;
 
         size_t offset = buff_offset_;
-        if (ttype == TIMESEP || ttype == END_OF_LINE) { next_token_.str = ""; }
+        if (ttype == TIMESEP || ttype == END_OF_LINE) {
+            next_token_.str = "";
+            offset += 1;
+        }
         else {
             while (++offset <= last_offset && charToTokenType(buff_[offset]) == ttype);
             next_token_.str = buff_.substr(buff_offset_, offset - buff_offset_);
         }
 
-        buff_offset_ = static_cast<size_t>(buff_offset_) + 1 >= buff_size_
-            ? -1
-            : buff_offset_ + 1;
+        buff_offset_ = offset >= buff_size_ ? -1 : offset;
     }
 
     bool Lexer::done() const { return next_token_.type == END_OF_FILE; }
 
-    Token& Lexer::lookup() const
+    Token Lexer::lookup() const
     {
-        return *(new Token(next_token_));
+        return next_token_;
     }
 
-    Token& Lexer::consume()
+    Token Lexer::consume()
     {
-        Token* now = new Token(next_token_);
+        Token now{next_token_};
         getNextToken();
-        return *now;
+        return now;
     }
 }

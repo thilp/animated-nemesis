@@ -1,4 +1,4 @@
-#include <cstdio>
+#include <iostream>
 #include <course.hh>
 
 Course::Course(int id, int sp, int ep, int st, int et)
@@ -9,9 +9,9 @@ Course::Course(int id, int sp, int ep, int st, int et)
     , end_time_(et)
 {}
 
-const char* Course::toString() const noexcept {
-    char* str = new char[128];
-    sprintf(str, "{%d %d %d %d %d}",
-            id_, start_point_, end_point_, start_time_, end_time_);
-    return str;
+std::ostream& operator<<(std::ostream& os, const Course& c) {
+    os << "{" << c.getId() << " "
+        << c.getStartPoint() << " " << c.getEndPoint() << " "
+        << c.getStartTime() << " " << c.getEndTime() << "}";
+    return os;
 }

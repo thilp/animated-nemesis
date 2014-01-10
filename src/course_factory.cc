@@ -1,11 +1,11 @@
 #include <cstring>
 #include <course_factory.hh>
 
-Course& CourseFactory::makeCourse(int id,
-                                  const char* startPoint,
-                                  const char* endPoint,
-                                  int startTime,
-                                  int endTime)
+Course CourseFactory::makeCourse(int id,
+                                 const char* startPoint,
+                                 const char* endPoint,
+                                 int startTime,
+                                 int endTime)
 {
     int sp = -1;
     {
@@ -29,10 +29,10 @@ Course& CourseFactory::makeCourse(int id,
         else ep = it->second;
     }
 
-    return *(new Course(id, sp, ep, startTime, endTime));
+    return Course(id, sp, ep, startTime, endTime);
 }
 
-const std::string& CourseFactory::idToPoint(int id) const
+std::string CourseFactory::idToPoint(int id) const
 {
-    return *(new std::string(vect_.at(id)));
+    return std::string(vect_.at(id));
 }

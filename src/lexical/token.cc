@@ -5,7 +5,7 @@ namespace Lexical {
     /* _MutableToken */
 
     _MutableToken::_MutableToken(TokenType ttype)
-        : str(*(new std::string)), type(ttype)
+        : str(), type(ttype)
     {}
 
     _MutableToken::_MutableToken(std::string& string,
@@ -17,14 +17,18 @@ namespace Lexical {
     /* Token */
 
     Token::Token(TokenType ttype)
-        : str(*(new std::string)), type(ttype)
+        : str(), type(ttype)
     {}
 
     Token::Token(const std::string& string, TokenType ttype)
         : str(string), type(ttype)
     {}
 
-    Token::Token(const _MutableToken& mtoken)
+    Token::Token(const _MutableToken& mtoken) noexcept
+        : str(mtoken.str), type(mtoken.type)
+    {}
+
+    Token::Token(_MutableToken&& mtoken) noexcept
         : str(mtoken.str), type(mtoken.type)
     {}
 

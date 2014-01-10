@@ -12,8 +12,8 @@ namespace Lexical {
         Lexer(std::istream& is);
 
         bool    done() const;
-        Token&  lookup() const;
-        Token&  consume();
+        Token   lookup() const;
+        Token   consume();
 
     private:
         bool    fillBuffer();
@@ -23,7 +23,7 @@ namespace Lexical {
     private:
         std::istream&   input_stream_;
         _MutableToken   next_token_;
-        std::string&    buff_;
+        std::string     buff_;
         size_t          buff_size_;
         int             buff_offset_;
     };

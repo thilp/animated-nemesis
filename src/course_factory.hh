@@ -8,13 +8,13 @@
 
 class CourseFactory {
 public:
-    Course& makeCourse(int id,
-                       const char* startPoint,
-                       const char* endPoint,
-                       int startTime,
-                       int endTime);
+    Course makeCourse(int id,
+                      const char* startPoint,
+                      const char* endPoint,
+                      int startTime,
+                      int endTime);
 
-    const std::string& idToPoint(int id) const;
+    std::string idToPoint(int id) const;
 
 private:
     int base_pointID_;

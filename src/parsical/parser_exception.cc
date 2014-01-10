@@ -8,7 +8,7 @@ namespace Parsical {
         case Lexical::TIMESEP:      return "time separator";
         case Lexical::END_OF_LINE:  return "end of line";
         case Lexical::END_OF_FILE:  return "end of file";
-        case Lexical::OTHER:        return "any alphabetical sequence";
+        case Lexical::OTHER:        return "alphabetical sequence";
         case Lexical::_IGNORABLE:   return "(ignorable character sequence)";
         default:                    return "(unknown)";
         }
