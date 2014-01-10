@@ -1,6 +1,8 @@
 BINARY = application
 SRCDIR = src
-SRCFILES = course.cc \
+SRCFILES = structs/course.cc \
+	   structs/employee.cc \
+	   structs/employee_day.cc \
 	   course_factory.cc \
 	   lexical/lexer.cc \
 	   lexical/token.cc \

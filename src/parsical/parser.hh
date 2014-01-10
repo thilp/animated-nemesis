@@ -5,7 +5,7 @@
 # include <fstream>
 # include <utils/option.hh>
 # include <lexical/lexer.hh>
-# include <course.hh>
+# include <structs/course.hh>
 # include <course_factory.hh>
 
 namespace Parsical {

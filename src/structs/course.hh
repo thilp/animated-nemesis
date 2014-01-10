@@ -19,6 +19,8 @@ public:
     int getStartTime() const noexcept { return start_time_; }
     int getEndTime() const noexcept { return end_time_; }
 
+    bool compatibleWith(const Course&) const noexcept;
+
 private:
     int id_;
     int start_point_;
@@ -27,6 +29,11 @@ private:
     int end_time_;
 };
 
+/* Display */
 std::ostream& operator<<(std::ostream&, const Course&);
+
+/* Time-based comparisons */
+bool operator<(const Course&, const Course&);
+bool operator>(const Course&, const Course&);
 
 #endif //!COURSE_HH

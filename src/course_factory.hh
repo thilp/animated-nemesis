@@ -4,7 +4,7 @@
 # include <string>
 # include <unordered_map>
 # include <vector>
-# include <course.hh>
+# include <structs/course.hh>
 
 class CourseFactory {
 public:

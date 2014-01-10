@@ -5,6 +5,7 @@
 #include <vector>
 #include <parsical/parser.hh>
 #include <parsical/parser_exception.hh>
+#include <structs/course.hh>
 
 static void print_usage(std::ostream& os, const char* appname) {
     os << "Usage: " << appname << " <filename>" << std::endl;
