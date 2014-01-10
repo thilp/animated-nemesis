@@ -1,34 +1,7 @@
 #include <cassert>
-#include "lexer.hh"
+#include <lexical/lexer.hh>
 
 namespace Lexical {
-
-    /* _MutableToken */
-
-    _MutableToken::_MutableToken(TokenType ttype)
-        : str(*(new std::string)), type(ttype)
-    {}
-
-    _MutableToken::_MutableToken(std::string& string,
-                                 TokenType ttype)
-        : str(string), type(ttype)
-    {}
-
-
-    /* Token */
-
-    Token::Token(TokenType ttype)
-        : str(*(new std::string)), type(ttype)
-    {}
-
-    Token::Token(const std::string& string, TokenType ttype)
-        : str(string), type(ttype)
-    {}
-
-    Token::Token(const _MutableToken& mtoken)
-        : str(mtoken.str), type(mtoken.type)
-    {}
-
 
     /* Lexer */
 
@@ -37,7 +10,9 @@ namespace Lexical {
           , next_token_(_IGNORABLE)
           , buff_(*(new std::string))
           , buff_offset_(-1)
-    {}
+    {
+        getNextToken();
+    }
 
     bool Lexer::fillBuffer()
     {
@@ -85,9 +60,7 @@ namespace Lexical {
         next_token_.type = ttype;
 
         size_t offset = buff_offset_;
-        if (   ttype == TIMESEP || ttype == END_OF_LINE) {
-            next_token_.str = "";
-        }
+        if (ttype == TIMESEP || ttype == END_OF_LINE) { next_token_.str = ""; }
         else {
             while (++offset <= last_offset && charToTokenType(buff_[offset]) == ttype);
             next_token_.str = buff_.substr(buff_offset_, offset - buff_offset_);
@@ -97,6 +70,8 @@ namespace Lexical {
             ? -1
             : buff_offset_ + 1;
     }
+
+    bool Lexer::done() const { return next_token_.type == END_OF_FILE; }
 
     Token& Lexer::lookup() const
     {

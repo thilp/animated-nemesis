@@ -1,10 +1,15 @@
 BINARY = application
 SRCDIR = src
-SRCFILES = main.cc \
-	   lexer.cc \
-	   course.cc \
+SRCFILES = course.cc \
 	   course_factory.cc \
+	   option.cc \
+	   lexical/lexer.cc \
+	   lexical/token.cc \
+	   parsical/parser.cc \
+	   parsical/parser_exception.cc \
+	   main.cc \
 
+CPPFLAGS += -I${SRCDIR}
 CXXFLAGS += -Wall -Wextra
 
 SRC = ${SRCFILES:%=${SRCDIR}/%}

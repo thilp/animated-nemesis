@@ -2,7 +2,8 @@
 #include <fstream>
 #include <ostream>
 #include <iostream>
-#include "lexer.hh"
+#include <parsical/parser.hh>
+#include <parsical/parser_exception.hh>
 
 static void print_usage(std::ostream& os, const char* appname) {
     os << "Usage: " << appname << " <filename>" << std::endl;
@@ -18,5 +19,17 @@ int main(int argc, char **argv) {
         std::cerr << "Error: can't read from " << argv[1] << std::endl;
         exit(2);
     }
-    Lexical::Lexer lex(is);
+
+    Parsical::Parser parser(is);
+    try {
+        Utils::Option<Course> opt = parser.nextCourse();
+        while (opt.defined()) {
+            std::cout << opt.get().toString() << std::endl;
+            opt = parser.nextCourse();
+        }
+    }
+    catch (Parsical::ParserException e) {
+        std::cerr << e.what() << std::endl;
+        exit(3);
+    }
 }

@@ -9,6 +9,8 @@ public:
            int startTime,
            int endTime);
 
+    const char* toString() const noexcept;
+
 private:
     int id_;
     int start_point_;

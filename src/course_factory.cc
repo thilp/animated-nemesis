@@ -1,5 +1,5 @@
 #include <cstring>
-#include "course_factory.hh"
+#include <course_factory.hh>
 
 Course& CourseFactory::makeCourse(int id,
                                   const char* startPoint,
