@@ -13,3 +13,10 @@ Employee::Employee()
     }}
 {
 }
+
+std::ostream& operator<<(std::ostream& os, const Employee& emp) {
+    for (const EmployeeDay& d: emp.cdays()) {
+        d.serialize(os, emp.getId());
+    }
+    return os;
+}

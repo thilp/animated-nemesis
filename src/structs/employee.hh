@@ -2,6 +2,7 @@
 # define EMPLOYEE_HH
 
 # include <array>
+# include <ostream>
 # include <structs/employee_day.hh>
 
 using Week = std::array<EmployeeDay, 5>;
@@ -11,6 +12,7 @@ public:
     Employee();
 
     inline unsigned int getId() const noexcept;
+    inline const Week&  cdays() const noexcept;
     inline Week&        days() noexcept;
 
 private:
@@ -19,6 +21,8 @@ private:
 
     static unsigned int base_id_;
 };
+
+std::ostream& operator<<(std::ostream&, const Employee&);
 
 # include <structs/employee.hxx>
 

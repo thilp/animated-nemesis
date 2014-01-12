@@ -5,6 +5,7 @@
 
 unsigned int Employee::getId() const noexcept { return id_; }
 
-Week& Employee::days() noexcept { return days_; }
+Week&       Employee::days()  noexcept { return days_; }
+const Week& Employee::cdays() const noexcept { return days_; }
 
 #endif //!EMPLOYEE_HXX

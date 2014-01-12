@@ -3,37 +3,41 @@
 
 # include <string>
 # include <ostream>
+# include <utils/day.hh>
 
 class Course {
 public:
     Course() = default; // dummy
-    Course(int id,
-           int startPoint,
-           int endPoint,
-           int startTime,
-           int endTime);
+    inline constexpr Course(int id,
+                            int startPoint, int endPoint,
+                            int startTime, int endTime);
 
-    int getId() const noexcept { return id_; }
-    int getStartPoint() const noexcept { return start_point_; }
-    int getEndPoint() const noexcept { return end_point_; }
-    int getStartTime() const noexcept { return start_time_; }
-    int getEndTime() const noexcept { return end_time_; }
+    constexpr int getId() const noexcept { return id_; }
+    constexpr int getStartPoint() const noexcept { return start_point_; }
+    constexpr int getEndPoint() const noexcept { return end_point_; }
+    constexpr int getStartTime() const noexcept { return start_time_; }
+    constexpr int getEndTime() const noexcept { return end_time_; }
 
-    bool compatibleWith(const Course&) const noexcept;
+    inline constexpr bool compatibleWith(const Course&) const noexcept;
 
 private:
-    int id_;
-    int start_point_;
-    int end_point_;
-    int start_time_;
-    int end_time_;
+    const int id_;
+    const int start_point_;
+    const int end_point_;
+    const int start_time_;
+    const int end_time_;
 };
 
 /* Display */
 std::ostream& operator<<(std::ostream&, const Course&);
 
 /* Time-based comparisons */
-bool operator<(const Course&, const Course&);
-bool operator>(const Course&, const Course&);
+inline constexpr bool operator<(const Course&, const Course&);
+inline constexpr bool operator>(const Course&, const Course&);
+
+/* Time- and location-based comparisons */
+inline constexpr bool operator==(const Course&, const Course&);
+
+# include <structs/course.hxx>
 
 #endif //!COURSE_HH
