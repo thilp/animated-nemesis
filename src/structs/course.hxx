@@ -12,15 +12,13 @@ constexpr Course::Course(int id, int sp, int ep, int st, int et)
 {}
 
 constexpr bool operator<(const Course& a, const Course& b) {
-    return (a.getEndTime() == b.getStartTime())
-        ? a.getEndPoint() == b.getStartPoint()
-        : a.getEndTime() < b.getStartTime();
+    return a.getEndPoint() == b.getStartPoint()
+        && a.getEndTime() < b.getStartTime();
 }
 
 constexpr bool operator>(const Course& a, const Course& b) {
-    return (a.getStartTime() == b.getEndTime())
-        ? a.getStartPoint() == b.getEndPoint()
-        : a.getStartTime() > b.getEndTime();
+    return a.getStartPoint() == b.getEndPoint()
+        && a.getStartTime() > b.getEndTime();
 }
 
 constexpr bool Course::compatibleWith(const Course& o) const noexcept {

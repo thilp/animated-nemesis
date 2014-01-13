@@ -6,7 +6,11 @@
 # include <list>
 # include <unordered_map>
 # include <set>
+# include <ostream>
 # include <structs/course.hh>
+
+# define PROBLEM_MAX_TOTAL_WORKTIME     (7 * 60)
+# define PROBLEM_MAX_EFFECTIVE_WORKTIME (5 * 60)
 
 using CoursePtr     = const Course*;
 using CourseSeq     = std::list<CoursePtr>;
@@ -33,5 +37,7 @@ struct Solution {
 };
 
 bool operator==(const Solution&, const Solution&);
+
+std::ostream& operator<<(std::ostream&, const Solution&);
 
 #endif //!SOLUTION_HH

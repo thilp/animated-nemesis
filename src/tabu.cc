@@ -1,3 +1,6 @@
+#ifdef DEBUG
+# include <iostream>
+#endif //DEBUG
 #include <cassert>
 #include <algorithm>
 #include <tabu.hh>
@@ -11,6 +14,9 @@ Tabu::Tabu(const unsigned tabu_list_size,
 }
 
 void Tabu::derive() {
+#ifdef DEBUG
+    std::cerr << "(Tabu::derive)" << std::endl;
+#endif //DEBUG
     assert(tabu_list_.size() == tabu_list_size_);
     Solution old{solution_};
     do {

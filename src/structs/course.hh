@@ -31,12 +31,10 @@ private:
 /* Display */
 std::ostream& operator<<(std::ostream&, const Course&);
 
-/* Time-based comparisons */
-inline constexpr bool operator<(const Course&, const Course&);
-inline constexpr bool operator>(const Course&, const Course&);
-
 /* Time- and location-based comparisons */
 inline constexpr bool operator==(const Course&, const Course&);
+inline constexpr bool operator<(const Course&, const Course&);
+inline constexpr bool operator>(const Course&, const Course&);
 
 # include <structs/course.hxx>
 

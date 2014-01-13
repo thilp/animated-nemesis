@@ -12,7 +12,7 @@
 #include <structs/course.hh>
 #include <tabu.hh>
 
-# define PRINT_EACH_NTH 10
+# define PRINT_EACH_NTH 1
 
 static void print_usage(std::ostream& os, const char* appname) {
     os << "Usage: " << appname << " <filename>" << std::endl;
@@ -53,10 +53,10 @@ int main(int argc, char **argv) {
 
     Tabu search{10, courses};
     assert(search.currentSolution().valid());
-    return 33;
 
     unsigned long rounds = 0;
     while (search_run) {
+        std::cerr << "(main loop)" << std::endl;
         if (rounds % PRINT_EACH_NTH == 0) {
             std::cout << "Current best value for round " << rounds
                 << " is: " << search.currentBestValue() << std::endl;
